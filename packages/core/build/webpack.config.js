@@ -19,7 +19,8 @@ module.exports = function (env) {
                 },
                 target: sub_path,
             },
-            host: 'localhost',
+            host: '0.0.0.0',
+            allowedHosts: 'all',
             server: 'https',
 
             port: 8443,

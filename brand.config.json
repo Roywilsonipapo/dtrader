@@ -4,8 +4,8 @@
     "brand_logo_dark": "brand/platform-logo.svg",
     "brand_domain": "deriv.com",
     "brand_hostname": {
-        "staging": "staging.dtrader-template.pages.dev",
-        "production": "dtrader-template.pages.dev"
+        "staging": "trader.localtest.me:8443",
+        "production": "trader.localtest.me:8443"
     },
     "platform": {
         "name": "Trading Platform",
@@ -19,15 +19,15 @@
         "staging": "https://staging-home.deriv.com/dashboard/signup"
     },
     "deposit_url": {
-        "staging": "https://staging.dtrader-template.pages.dev/transfer",
-        "production": "https://dtrader-template.pages.dev/transfer"
+        "staging": "https://trader.localtest.me:8443/transfer",
+        "production": "https://trader.localtest.me:8443/transfer"
     },
     "auth": {
         "staging": "https://staging-auth.deriv.com",
         "production": "https://auth.deriv.com",
         "oauth_scopes": ["trade", "account_manage"],
-        "oauth_redirect_uri_staging": "https://staging.dtrader-template.pages.dev",
-        "oauth_redirect_uri_production": "https://dtrader-template.pages.dev",
+        "oauth_redirect_uri_staging": "https://trader.localtest.me:8443",
+        "oauth_redirect_uri_production": "https://trader.localtest.me:8443",
         "oauth_app_id": ""
     },
     "derivws": {
@@ -43,8 +43,9 @@
         "production": "api.deriv.com"
     },
     "app_id": {
-        "staging": 16929,
-        "production": 16929
+       "staging": 16929,
+       "production": 16929
+
     },
     "colors": {
         "primary": "#118e1c",
