@@ -1,5 +1,5 @@
 {
-    "brand_name": "Apexspace.com",
+    "brand_name": "Cipheredge Markets",
     "brand_logo": "brand/platform-logo.svg",
     "brand_logo_dark": "brand/platform-logo.svg",
     "brand_domain": "deriv.com",
@@ -8,7 +8,7 @@
         "production": "trader.localtest.me:8443"
     },
     "platform": {
-        "name": "Trading Platform",
+        "name": "Cipheredge Markets",
         "description": "A whole new trading experience on a powerful yet easy to use platform.",
         "logo": "brand/platform-logo.svg",
         "home_url": "https://home.deriv.com/dashboard",
@@ -47,16 +47,16 @@
        "production": 1089
     },
     "colors": {
-        "primary": "#118e1c",
-        "secondary": "#85acb0",
-        "tertiary": "#ff6b35",
-        "success": "#4bb4b3",
-        "danger": "#ec3f3f",
-        "warning": "#ffad3a",
-        "info": "#2196f3",
-        "neutral": "#999999",
-        "black": "#181c25",
-        "white": "#ffffff"
+          "primary": "#118e1c",
+    "secondary": "#85acb0",
+    "tertiary": "#ff6b35",
+    "success": "#4bb4b3",
+    "danger": "#ec3f3f",
+    "warning": "#ffad3a",
+    "info": "#2196f3",
+    "neutral": "#999999",
+    "black": "#181c25",
+    "white": "#ffffff"
     },
     "color_variants": {
         "auto_generate": true,

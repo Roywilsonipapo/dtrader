@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { APIProvider, useMobileBridge } from '@deriv/api';
-import { Loading } from '@deriv/components';
 import { initFormErrorMessages, setUrlLanguage, setWebsocket } from '@deriv/shared';
 import { StoreProvider } from '@deriv/stores';
 import { BreakpointProvider } from '@deriv-com/quill-ui';
@@ -15,8 +14,11 @@ import WS from 'Services/ws-methods';
 import { FORM_ERROR_MESSAGES } from '../Constants/form-error-messages';
 
 import AppContent from './AppContent';
+import BrandSplashScreen from './Components/BrandSplashScreen';
 
 import 'Sass/app.scss';
+
+const SPLASH_DURATION_MS = 10000; // how long the branded splash screen stays visible on initial load
 
 const App = ({ root_store }) => {
     const i18nInstance = initializeI18n({
@@ -30,6 +32,13 @@ const App = ({ root_store }) => {
     const is_dark_mode = is_dark_mode_on || JSON.parse(localStorage.getItem('ui_store'))?.is_dark_mode_on;
     const language = preferred_language ?? getInitialLanguage();
     const { isBridgeAvailable, sendBridgeEvent } = useMobileBridge();
+
+    const [show_splash, setShowSplash] = React.useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => setShowSplash(false), SPLASH_DURATION_MS);
+        return () => clearTimeout(timer);
+    }, []);
 
     // Handle OAuth2 callback — the auth server redirects back to / with ?code=...&state=...
     // No separate /callback route needed; we handle it inline here on every mount.
@@ -129,20 +138,23 @@ const App = ({ root_store }) => {
     }, []);
 
     return (
-        <Router basename={has_base ? `/${base}` : null}>
-            <StoreProvider store={root_store}>
-                <BreakpointProvider>
-                    <APIProvider>
-                        <TranslationProvider defaultLang={language} i18nInstance={i18nInstance}>
-                            {/* This is required as translation provider uses suspense to reload language */}
-                            <React.Suspense fallback={<Loading />}>
-                                <AppContent passthrough={platform_passthrough} />
-                            </React.Suspense>
-                        </TranslationProvider>
-                    </APIProvider>
-                </BreakpointProvider>
-            </StoreProvider>
-        </Router>
+        <>
+            {show_splash && <BrandSplashScreen />}
+            <Router basename={has_base ? `/${base}` : null}>
+                <StoreProvider store={root_store}>
+                    <BreakpointProvider>
+                        <APIProvider>
+                            <TranslationProvider defaultLang={language} i18nInstance={i18nInstance}>
+                                {/* This is required as translation provider uses suspense to reload language */}
+                                <React.Suspense fallback={<BrandSplashScreen />}>
+                                    <AppContent passthrough={platform_passthrough} />
+                                </React.Suspense>
+                            </TranslationProvider>
+                        </APIProvider>
+                    </BreakpointProvider>
+                </StoreProvider>
+            </Router>
+        </>
     );
 };
 
