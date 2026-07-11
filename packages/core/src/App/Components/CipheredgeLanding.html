@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cipheredge Markets</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fff;font-family:Helvetica,Arial,sans-serif;overflow-x:hidden}
+:root{--red:#E50914;--red2:#831010;--dark:#0a0a0a;--card:#111111;--border:#232323;--muted:#8c8c8c;--text:#ffffff}
+
+.ticker-wrap{width:100%;background:#111;border-bottom:1px solid #1a1a1a;overflow:hidden;height:36px;display:flex;align-items:center}
+.ticker-track{display:flex;white-space:nowrap;animation:ticker 28s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 22px;font-family:monospace;font-size:12px;color:#bdbdbd}
+.ticker-item .sym{color:#fff;font-weight:600}
+.ticker-item .up{color:#2ecc71}
+.ticker-item .dn{color:#E50914}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:1px solid #1a1a1a;background:#0a0a0a;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;background:#111;border:2px solid var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:var(--red)}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:.5px}
+.logo-text span{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{color:#bdbdbd;text-decoration:none;font-size:13px;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--red);color:#fff;border:none;padding:9px 20px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+.hero{padding:90px 32px 70px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(229,9,20,.12),transparent 65%)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #2a2a2a;border-radius:20px;padding:6px 16px;font-size:12px;color:#bdbdbd;letter-spacing:.5px;margin-bottom:28px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(32px,5vw,60px);font-weight:800;line-height:1.1;margin-bottom:18px;letter-spacing:-1px}
+.hero h1 span{color:var(--red)}
+.hero p{font-size:16px;color:#9c9c9c;max-width:520px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(90deg,var(--red),var(--red2));color:#fff;border:none;padding:14px 32px;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:scale(1.04)}
+.btn-secondary{background:transparent;color:#fff;border:1px solid #333;padding:13px 28px;border-radius:28px;font-size:14px;cursor:pointer;transition:border-color .2s}
+.btn-secondary:hover{border-color:#666}
+.hero-note{margin-top:16px;font-size:12px;color:#555}
+
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;padding:0 32px 64px}
+.stat-card{background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:20px 28px;text-align:center;min-width:140px;transition:border-color .25s,transform .25s;cursor:default}
+.stat-card:hover{border-color:var(--red);transform:translateY(-4px)}
+.stat-val{font-size:22px;font-weight:700;color:var(--red);margin-bottom:4px}
+.stat-label{font-size:11px;color:#666;letter-spacing:.3px}
+
+.section{max-width:1100px;margin:0 auto;padding:56px 32px}
+.section-eye{display:inline-block;font-size:11px;letter-spacing:2px;color:var(--red);border:1px solid #2a1214;border-radius:14px;padding:4px 14px;margin-bottom:14px}
+.section h2{font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:10px}
+.section-sub{font-size:14px;color:#7c7c7c;margin-bottom:40px;max-width:520px;line-height:1.6}
+
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.feature-card{background:#111;border:1px solid #1e1e1e;border-radius:12px;padding:24px 20px;transition:transform .25s,border-color .25s,box-shadow .25s;cursor:default}
+.feature-card:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 12px 30px rgba(229,9,20,.15)}
+.feature-icon{width:44px;height:44px;background:#1a1a1a;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px}
+.feature-card h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.feature-card p{font-size:12.5px;color:#7c7c7c;line-height:1.6}
+.feature-tag{font-size:11px;color:var(--red);margin-bottom:6px;letter-spacing:.3px}
+
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:8px}
+.tool-card{background:#111;border:1px solid #1e1e1e;border-radius:12px;padding:20px;display:flex;gap:16px;align-items:flex-start;transition:border-color .25s,transform .2s;cursor:pointer}
+.tool-card:hover{border-color:var(--red);transform:translateX(4px)}
+.tool-icon{width:42px;height:42px;background:linear-gradient(135deg,#1a0a0b,#2a1010);border:1px solid #3a1818;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tool-info h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.tool-info p{font-size:12px;color:#6c6c6c;line-height:1.5}
+.tool-badge{font-size:10px;background:#1a0a0b;color:var(--red);border:1px solid #3a1818;border-radius:10px;padding:2px 8px;margin-top:6px;display:inline-block}
+
+.checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.check-item{display:flex;align-items:center;gap:10px;background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:13px 16px;font-size:13px;color:#d0d0d0;transition:transform .2s,border-color .2s}
+.check-item:hover{transform:translateX(4px);border-color:#333}
+.check-mark{color:var(--red);font-weight:700;font-size:14px;flex-shrink:0}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,#2a2a2a,transparent);margin:0 32px}
+
+.footer-risk{background:#0d0d0d;border-top:1px solid #1a1a1a;padding:28px 32px}
+.risk-block{max-width:900px;margin:0 auto 12px;background:#111;border:1px solid #1e1e1e;border-left:4px solid var(--red);border-radius:6px;padding:16px 20px}
+.risk-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--red);margin-bottom:8px}
+.risk-text{font-size:12px;color:#7c7c7c;line-height:1.7}
+.partner-block{max-width:900px;margin:0 auto;background:#111;border:1px solid #1e1e1e;border-left:4px solid #333;border-radius:6px;padding:14px 20px}
+.partner-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#555;margin-bottom:6px}
+.partner-text{font-size:12px;color:#555;line-height:1.6}
+
+.live-bar{background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite;flex-shrink:0}
+.live-label{font-size:12px;color:#555;margin-right:8px}
+.live-price{font-family:monospace;font-size:13px;color:#fff;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px}
+.live-sym{color:#bdbdbd;font-size:11px;margin-right:4px}
+.live-change{font-size:11px}
+</style>
+</head>
+<body>
+
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item"><span class="sym">VOL 100</span> <span id="t0p">778.33</span> <span id="t0c" class="up">▲ 0.04%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 75</span> <span id="t1p">301.18</span> <span class="up">▲ 0.11%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 50</span> <span id="t2p">215.92</span> <span class="dn">▼ 0.03%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 25</span> <span id="t3p">189.44</span> <span class="up">▲ 0.07%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 10</span> <span id="t4p">9650.22</span> <span class="dn">▼ 0.02%</span></span>
+    <span class="ticker-item"><span class="sym">BOOM 1000</span> <span>8912.44</span> <span class="up">▲ 0.18%</span></span>
+    <span class="ticker-item"><span class="sym">CRASH 1000</span> <span>8744.10</span> <span class="dn">▼ 0.21%</span></span>
+    <span class="ticker-item"><span class="sym">EUR/USD</span> <span>1.0842</span> <span class="dn">▼ 0.02%</span></span>
+    <span class="ticker-item"><span class="sym">BTC/USD</span> <span>67,210</span> <span class="up">▲ 1.21%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 100</span> <span id="t0p">778.33</span> <span class="up">▲ 0.04%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 75</span> <span>301.18</span> <span class="up">▲ 0.11%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 50</span> <span>215.92</span> <span class="dn">▼ 0.03%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 25</span> <span>189.44</span> <span class="up">▲ 0.07%</span></span>
+    <span class="ticker-item"><span class="sym">VOL 10</span> <span>9650.22</span> <span class="dn">▼ 0.02%</span></span>
+    <span class="ticker-item"><span class="sym">BOOM 1000</span> <span>8912.44</span> <span class="up">▲ 0.18%</span></span>
+    <span class="ticker-item"><span class="sym">CRASH 1000</span> <span>8744.10</span> <span class="dn">▼ 0.21%</span></span>
+    <span class="ticker-item"><span class="sym">EUR/USD</span> <span>1.0842</span> <span class="dn">▼ 0.02%</span></span>
+    <span class="ticker-item"><span class="sym">BTC/USD</span> <span>67,210</span> <span class="up">▲ 1.21%</span></span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">C</div>
+    <div class="logo-text">CIPHEREDGE <span>MARKETS</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Trade</a>
+    <a href="#">Analysis</a>
+    <a href="#">Free Bots</a>
+    <a href="#">Reports</a>
+  </div>
+  <button class="nav-cta">Log in →</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="dot"></span> Powered by Deriv's Trading Engine</div>
+  <h1>Precision Trading.<br><span>Coded for the Edge.</span></h1>
+  <p>A professional-grade derivatives trading platform built for serious traders. Real-time pricing, analysis tools, and automated strategies — all in one place.</p>
+  <div class="hero-btns">
+    <button class="btn-primary">Start Trading →</button>
+    <button class="btn-secondary">Explore Tools</button>
+  </div>
+  <div class="hero-note">No credit card required · Demo account included · Powered by Deriv</div>
+</div>
+
+<div class="stats">
+  <div class="stat-card"><div class="stat-val">$10,000</div><div class="stat-label">Virtual demo balance</div></div>
+  <div class="stat-card"><div class="stat-val">24/7</div><div class="stat-label">Market access</div></div>
+  <div class="stat-card"><div class="stat-val">0%</div><div class="stat-label">Setup fees</div></div>
+  <div class="stat-card"><div class="stat-val">100%</div><div class="stat-label">OAuth secured login</div></div>
+  <div class="stat-card"><div class="stat-val">6+</div><div class="stat-label">Contract types</div></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-eye">PLATFORM</div>
+  <h2>Built for serious traders</h2>
+  <p class="section-sub">Professional tools backed by Deriv's regulated trading infrastructure — no compromises.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <div class="feature-tag">LIVE DATA</div>
+      <h3>Real-time price feed</h3>
+      <p>Live market data streamed directly from Deriv's WebSocket API with zero added delay.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-tag">CONTRACT TYPES</div>
+      <h3>6+ trading products</h3>
+      <p>Rise/Fall, Accumulators, Multipliers, Turbos, Vanillas, Higher/Lower — all on one platform.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-tag">SECURITY</div>
+      <h3>OAuth2 secure login</h3>
+      <p>Log in with your Deriv account. We never see or store your password — ever.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-tag">AUTOMATION</div>
+      <h3>Bot strategies</h3>
+      <p>Load pre-built trading bots or build your own strategies using the visual bot builder.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <div class="feature-tag">ANALYSIS</div>
+      <h3>Digit analysis tool</h3>
+      <p>Live digit frequency distribution, Even/Odd splits, and Over/Under breakdowns in real time.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-tag">REPORTS</div>
+      <h3>Full trade history</h3>
+      <p>Open positions, profit/loss table, account statements — all accessible in one click.</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-eye">TOOLS</div>
+  <h2>Your trading toolkit</h2>
+  <p class="section-sub">Every tool you need to trade with clarity — analysis, automation, and execution in one place.</p>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-icon">📉</div>
+      <div class="tool-info">
+        <h4>Digit Analysis</h4>
+        <p>Live digit frequency, Even/Odd, Over/Under — all updating tick by tick.</p>
+        <span class="tool-badge">LIVE</span>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">🤖</div>
+      <div class="tool-info">
+        <h4>Bot Builder</h4>
+        <p>Visual drag-and-drop strategy builder. No coding required.</p>
+        <span class="tool-badge">INTERACTIVE</span>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">📦</div>
+      <div class="tool-info">
+        <h4>Free Bots Library</h4>
+        <p>Pre-built strategies: Martingale recovery, Digit switcher, Over/Under autobot and more.</p>
+        <span class="tool-badge">FREE</span>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">📈</div>
+      <div class="tool-info">
+        <h4>Live Charts</h4>
+        <p>Candlestick and area charts with real-time tick data across all synthetic indices.</p>
+        <span class="tool-badge">REAL-TIME</span>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">🧮</div>
+      <div class="tool-info">
+        <h4>Risk Calculator</h4>
+        <p>Calculate stake sizing, max loss, and expected payout before you trade.</p>
+        <span class="tool-badge">COMING SOON</span>
+      </div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">📋</div>
+      <div class="tool-info">
+        <h4>Trade Reports</h4>
+        <p>Full history, profit table, and account statement — always accessible.</p>
+        <span class="tool-badge">ACCOUNT</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-eye">WHY CIPHEREDGE MARKETS</div>
+  <h2>Trade with clarity</h2>
+  <p class="section-sub">No hidden stats, no inflated claims — just a clean, honest trading experience.</p>
+  <div class="checklist-grid">
+    <div class="check-item"><span class="check-mark">✓</span> Powered by Deriv's regulated trading engine</div>
+    <div class="check-item"><span class="check-mark">✓</span> No deposit required to start practicing</div>
+    <div class="check-item"><span class="check-mark">✓</span> Real-time market data with zero added delay</div>
+    <div class="check-item"><span class="check-mark">✓</span> Secure authentication via Deriv OAuth2</div>
+    <div class="check-item"><span class="check-mark">✓</span> Trade synthetic indices, forex, and crypto</div>
+    <div class="check-item"><span class="check-mark">✓</span> Both demo and real account support</div>
+    <div class="check-item"><span class="check-mark">✓</span> Pre-built bot strategies, free to load</div>
+    <div class="check-item"><span class="check-mark">✓</span> Full trade history and position tracking</div>
+  </div>
+</div>
+
+<div class="footer-risk">
+  <div class="risk-block">
+    <div class="risk-label">RISK WARNING</div>
+    <div class="risk-text">The products offered include Options, Contracts for Difference ("CFDs"), and other complex derivatives. Trading Options may not be suitable for everyone. Trading CFDs carries a high level of risk since leverage can work both to your advantage and disadvantage. As a result, the products offered may not be suitable for all investors because of the risk of losing all of your invested funds.</div>
+  </div>
+  <div class="partner-block">
+    <div class="partner-label">PARTNERSHIP DISCLOSURE</div>
+    <div class="partner-text">Cipheredge Markets is an independent affiliate of Deriv. Trading services and financial products are offered by Deriv, not by Cipheredge Markets. Cipheredge Markets does not hold, custody, or pool client funds. All accounts, deposits, and trades are held and executed directly with Deriv.</div>
+  </div>
+</div>
+
+</body>
+</html>

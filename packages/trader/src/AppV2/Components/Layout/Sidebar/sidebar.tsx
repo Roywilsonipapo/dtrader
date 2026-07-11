@@ -90,6 +90,19 @@ const Sidebar = observer(() => {
         history.push(routes.reports);
     };
 
+    const handleBotBuilderClick = () => {
+        setSidebarFlyout(null);
+        history.push(routes.bot_builder);
+    };
+const handleDigitAnalysisClick = () => {
+    setSidebarFlyout(null);
+    history.push(routes.digit_analysis);
+};
+const handleFreeBotsClick = () => {
+    setSidebarFlyout(null);
+    history.push(routes.free_bots);
+};
+
     const handleHelpCentreClick = () => {
         closeSidebarFlyout();
         window.open(getHelpCentreUrl(), '_blank', 'noopener,noreferrer');
@@ -140,6 +153,30 @@ const Sidebar = observer(() => {
             isActive: isReportsActive,
             dataTestId: 'dt_sidebar_reports',
         },
+        {
+            id: 'bot_builder',
+            icon: <span style={{ fontSize: 16 }}>🤖</span>,
+            label: localize('Bot Builder'),
+            onClick: handleBotBuilderClick,
+            isActive: isActiveRoute(routes.bot_builder),
+            dataTestId: 'dt_sidebar_bot_builder',
+        },
+{
+    id: 'digit_analysis',
+    icon: <span style={{ fontSize: 16 }}>📉</span>,
+    label: localize('Analysis'),
+    onClick: handleDigitAnalysisClick,
+    isActive: isActiveRoute(routes.digit_analysis),
+    dataTestId: 'dt_sidebar_digit_analysis',
+},
+{
+    id: 'free_bots',
+    icon: <span style={{ fontSize: 16 }}>📦</span>,
+    label: localize('Free Bots'),
+    onClick: handleFreeBotsClick,
+    isActive: isActiveRoute(routes.free_bots),
+    dataTestId: 'dt_sidebar_free_bots',
+},
     ];
 
     // Utility items (bottom section)

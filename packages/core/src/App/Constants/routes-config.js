@@ -15,6 +15,11 @@ const Trader = React.lazy(() => import(/* webpackChunkName: "trader" */ '@deriv/
 
 const Reports = React.lazy(() => import(/* webpackChunkName: "reports" */ '@deriv/reports'));
 
+const BotBuilder = React.lazy(() => import(/* webpackChunkName: "bot-builder" */ '../Components/BotBuilderPage'));
+const WelcomeLanding = React.lazy(() => import(/* webpackChunkName: "landing" */ '../Components/WelcomeLanding'));
+const DigitAnalysis = React.lazy(() => import(/* webpackChunkName: "digit-analysis" */ '../Components/DigitAnalysis'));
+const FreeBots = React.lazy(() => import(/* webpackChunkName: "free-bots" */ '../Components/FreeBots'));
+
 const getModules = () => {
     const modules = [
         {
@@ -54,6 +59,30 @@ const getModules = () => {
             getTitle: () => localize('Menu'),
             protected: false,
         },
+        {
+            path: routes.bot_builder,
+            component: BotBuilder,
+            getTitle: () => localize('Bot Builder'),
+            protected: false,
+        },
+{
+    path: routes.landing,
+    component: WelcomeLanding,
+    getTitle: () => localize('Home'),
+    protected: false,
+},
+{
+    path: routes.digit_analysis,
+    component: DigitAnalysis,
+    getTitle: () => localize('Digit Analysis'),
+    protected: false,
+},
+{
+    path: routes.free_bots,
+    component: FreeBots,
+    getTitle: () => localize('Free Bots'),
+    protected: false,
+  },
         {
             path: routes.index,
             component: Trader,

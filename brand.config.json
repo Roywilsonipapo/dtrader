@@ -47,16 +47,16 @@
        "production": 1089
     },
     "colors": {
-          "primary": "#118e1c",
-    "secondary": "#85acb0",
-    "tertiary": "#ff6b35",
-    "success": "#4bb4b3",
-    "danger": "#ec3f3f",
-    "warning": "#ffad3a",
-    "info": "#2196f3",
-    "neutral": "#999999",
-    "black": "#181c25",
-    "white": "#ffffff"
+        "primary": "#E50914",
+        "secondary": "#141414",
+        "tertiary": "#831010",
+        "success": "#2ecc71",
+        "danger": "#E50914",
+        "warning": "#ffad3a",
+        "info": "#2196f3",
+        "neutral": "#8c8c8c",
+        "black": "#141414",
+        "white": "#ffffff"
     },
     "color_variants": {
         "auto_generate": true,

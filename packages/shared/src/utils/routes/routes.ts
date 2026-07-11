@@ -7,6 +7,11 @@ export const routes = {
 
     // Trading routes
     menu: '/menu',
+    bot_builder: '/bot-builder',
+    digit_analysis: '/digit-analysis',
+    free_bots: '/free-bots',
+    landing: '/landing',
+
     trader_positions: '/positions',
     contract: '/contract/:contract_id',
 
